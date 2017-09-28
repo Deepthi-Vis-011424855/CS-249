@@ -1,0 +1,20 @@
+1) Interactions
+- Refer the Activity and UML diagrams
+
+2) What we need to store
+- We need to store the vector clock for each processor. Vector Clock is essentially an array of n elements where n is the number of processor
+
+3) What needs to change
+- The value of the vector clock array will change depending on the type of the message (SEND, RECEIVE, COMPUTE).
+- Also, the message type is only stored for each event. It is changed with every event.
+
+4) What will be the input? [ The input will be different each time, user should have the ability to control input  and get different results ] 
+- The input will be the series of computation events for each processor. The user should have the ability to change the set this plan for each processor
+- Also, if we choose to, the user could be given the option to select the number of processors
+
+5) What will be the output?
+- The out put will the final vector clock array for each processor at the end of the algorithm, i.e. when all the events have been executed.
+
+6) Decide which event happened Before, which event is concurrent.
+- If all the elements of the vector clock array for one event of one processor (event 1) are less than or equal to the other event of the second processor (event 2), then we can say that the event 1 has happened before event 2.
+- If the above condition is not met, then it is safe to assume that the 2 events are concurrent.
