@@ -1,0 +1,20 @@
+CONVERGECAST
+------------------------------------------------------------------
+Convergecast is an algorithm where information of all the nodes is
+collected in the root of the tree. Here, the maximum value among 
+all the nodes in the tree is sent to the root,
+
+HOW TO RUN
+------------------------------------------------------------------
+This program is executed by running the Main.java class
+
+FLOW OF EXECUTION
+------------------------------------------------------------------
+1. The Main.java class object when created, it calls the init() 
+method which creates the tree structure given.
+2. A Convergecast() method is defined which recursively returns the
+maximum value in each subtree, eventually returning the maximum 
+element in the entire tree.
+3. To collect all the values of all the nodes, an arraylist is 
+created and a postorder traversal is done to store all the values 
+in this arraylist.
