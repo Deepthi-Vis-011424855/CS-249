@@ -1,0 +1,27 @@
+DFS Spanning Tree
+------------------------------------------------------------------------------------------------------
+A tree T is a spanning tree of a graph G if T is a subgraph of G that contains all the vertices of G. 
+Every connected graph has a spanning tree which can be obtained by removing edges until the resulting 
+graph becomes acyclic. In practice, however, removing edges is not efficient because finding cycles is 
+time consuming.
+
+Depth First Search Algorithm
+------------------------------------------------------------------------------------------------------
+The idea of this algorithm is to make a path as long as possible, and then go back (backtrack) to add 
+branches also as long as possible, the result of which is a tree containing all the vertices of a graph.
+
+Hence, a DFS spanning tree of a connected graph is:
+Tree spanning all vertices (= n of them) of the graph.
+Each spanning tree has n nodes and n − 1 links. 
+
+How to Run
+------------------------------------------------------------------------------------------------------
+This program can be executed by running the Main.java file
+
+Flow of Execution
+------------------------------------------------------------------------------------------------------
+1. When the Main.java is executed, the object of Main class is created, which in turn calls the init()
+method. This init() method initializes and constructs the given graph.
+2. Processor p0 is set as root and a Message M is sent to itself, from which the algorithm starts getting
+executed. 
+3. Once the algorithm is executed, the spanning tree is created.

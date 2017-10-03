@@ -1,0 +1,52 @@
+Setting root processor as p0...
+
+Sending message M from Processor 0 to Processor 0
+
+Processor chosen from unexplored list of 0 : 3 will be removed...
+Sending message M from Processor 0 to Processor 3
+
+Sending message PARENT from Processor 3 to Processor 0
+Adding Processor 3 as Processor 0's child...
+
+Processor chosen from unexplored list of 0 : 2 will be removed...
+Sending message M from Processor 0 to Processor 2
+
+Processor chosen from unexplored list of 2 : 5 will be removed...
+Sending message M from Processor 2 to Processor 5
+
+Processor chosen from unexplored list of 5 : 4 will be removed...
+Sending message M from Processor 5 to Processor 4
+
+Processor chosen from unexplored list of 4 : 1 will be removed...
+Sending message M from Processor 4 to Processor 1
+
+Processor chosen from unexplored list of 1 : 2 will be removed...
+Sending message M from Processor 1 to Processor 2
+Sending message ALREADY from Processor 2 to Processor 1
+
+Processor chosen from unexplored list of 1 : 0 will be removed...
+Sending message M from Processor 1 to Processor 0
+Sending message ALREADY from Processor 0 to Processor 1
+
+Sending message PARENT from Processor 1 to Processor 4
+Adding Processor 1 as Processor 4's child...
+
+Sending message PARENT from Processor 4 to Processor 5
+Adding Processor 4 as Processor 5's child...
+
+Sending message PARENT from Processor 5 to Processor 2
+Adding Processor 5 as Processor 2's child...
+
+Sending message PARENT from Processor 2 to Processor 0
+Adding Processor 2 as Processor 0's child...
+
+The spanning tree formed is:
+------------------------------------------
+Processor 0's children: 3  2  
+Processor 3's children: 
+Processor 5's children: 4  
+Processor 2's children: 5  
+Processor 4's children: 1  
+Processor 1's children: 
+
+Terminating....
