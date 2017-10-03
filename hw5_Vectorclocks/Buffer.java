@@ -1,0 +1,55 @@
+package hw5_Vectorclocks;
+
+import java.util.Observable;
+
+/**
+ * Observable Buffer of each node
+ * @author Sample
+ * @version 1.0
+ */
+public class Buffer extends Observable {
+    private Message message;
+    private Processor fromProcessor;
+    /**
+     * 
+     * Creates empty buffer
+     */
+    public Buffer(){
+    	this.message = null;
+    }
+
+    /**
+     * Creates buffer with message
+     * @param message Message to be stored
+     */
+    public Buffer(Message message) {
+        this.message = message;
+    }
+    
+    /**
+     * @return Message from the buffer
+     */
+    public Message  getMessage() {
+        return message;
+    }
+    
+    public void setFromProcessor(Processor processor) {
+    		this.fromProcessor = processor ;
+    }
+    
+    public Processor getFromProcessor() {
+    		return this.fromProcessor;
+    }
+
+    /**
+     * Sets the message and notifies the observers with the sender node's information
+     * @param message		Message to be stored in the buffer
+     * @param fromProcessor Node who sent the message
+     */
+    public void setMessage(Message message ) {
+        this.message = message;
+        setChanged();
+        notifyObservers();
+    }
+}
+
