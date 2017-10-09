@@ -1,0 +1,25 @@
+___________________________________________________________________________
+FLOW OF EXECUTION
+___________________________________________________________________________
+
+Main.java
+
+- Here we create an object of the Algorithm class to initiate the Execution plan of the processors.
+- We take the input for the cut from the user and call the printMaxCut() method in the Algorithm class.
+
+Algorithm.java
+
+- We define the execution plan for each processor
+- We have defined the printMaxCut() method, which in turn, calls the calculateMaxCut() method in the Processor class
+
+Processor.java
+
+- addToStoreArray(): This method is called after each event to add the vector clock to the storeArray for that processor.
+- printStoreArray(): This method prints the final storeArray for that processor,
+- calculateVectorClocks(): This method performs the appropriate operation according to the Message.type received in the message buffer of that processor.
+- calculateMaxCut(): This method calculates the maximum cut for the input cut provided.
+
+VectorClock.java
+
+- We overloaded the VectorClock constructor to take an integer array as an input.
+- compareTo(): In this method, we compare the 2 vector clocks and return appropriate values based on the comparison.
