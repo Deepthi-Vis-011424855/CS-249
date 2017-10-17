@@ -1,0 +1,27 @@
+----------------------------------------------------------------------------------------------
+CHANDY LAMPORT ALGORITHM
+----------------------------------------------------------------------------------------------
+
+The Chandy–Lamport algorithm is a snapshot algorithm that is used in distributed systems for recording a consistent global state of an asynchronous system. It was developed by and named after Leslie Lamport and K. Mani Chandy.
+
+How to run the code:
+
+- Run the main.java as a java application.
+
+Code structure:
+
+- Main.java: Here, we create 3 threads to start the execution plan for each processor and initiate the snapshot for processor 1.
+
+- Processor.java: This class performs all the operations related to a processor. It has methods to :
+		> check if a marker message received is the first marker
+		> to make the incoming channel from which marker was received as empty
+		> to initiate snapshot by starting recording on the incoming channels by spawning new threads
+		> a dummy method to record the current state of a processor
+		> a sendMessageTo function which saves the message in the particular channel and triggers to call the update method.
+		> the update method is where the chandy-lamport algorithm is defined.
+		
+- Buffer.java: A class which has the incoming messages for each channel.
+
+- Message.java: Gives the message type and from which processor it was sent or received.
+
+- Algorithm.java: A class where execution plan for each processor is defined.
