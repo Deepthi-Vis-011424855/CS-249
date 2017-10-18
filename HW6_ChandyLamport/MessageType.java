@@ -12,7 +12,7 @@ public enum  MessageType {
     COMPUTATION,
     //TODO: Add more message types SEND and RECIEVE
 
-	ALGORITHM,
+	HELLO, BONJOUR, CIAO,
 
 	MARKER
     

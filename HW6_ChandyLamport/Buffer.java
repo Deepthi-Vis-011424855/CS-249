@@ -63,4 +63,3 @@ public class Buffer extends Observable {
         return messages.size();
     }
 }
-

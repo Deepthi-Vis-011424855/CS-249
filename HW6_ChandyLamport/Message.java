@@ -1,11 +1,11 @@
 package HW6_ChandyLamport;
 
-
 public class Message {
 	MessageType messageType;
 
 	/**
 	 * THe processor that is sending a message
+	 * 
 	 * @return
 	 */
 	public Processor getFrom() {
@@ -16,17 +16,17 @@ public class Message {
 		this.from = from;
 	}
 
-	Processor from; //source
-	
+	Processor from; // source
+
 	public Message(MessageType mt) {
-		this.messageType=mt;
+		this.messageType = mt;
 	}
 
 	public MessageType getMessageType() {
 		return messageType;
 	}
-	
-	public String toString () {
-	  return "Message Type: " + this.messageType + "";
+
+	public String toString() {
+		return "Message Type: " + this.messageType + "";
 	}
 }

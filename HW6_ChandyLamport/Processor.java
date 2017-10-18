@@ -46,6 +46,8 @@ public class Processor implements Observer {
 	 */
 	Map<Processor, Integer> channelMarkerCount = null;
 
+	Map<String, Thread> threadHolder = null;
+
 	public Processor(int id) {
 		this.id = id;
 	}
@@ -59,6 +61,7 @@ public class Processor implements Observer {
 		this.inChannels = inChannels;
 		this.outChannels = outChannels;
 		channelMarkerCount = new HashMap<Processor, Integer>();
+		threadHolder = new HashMap<String, Thread>();
 		for (int index = 0; index < inChannels.size(); index++) {
 			inChannels.get(index).addObserver(this);
 		}
@@ -123,8 +126,6 @@ public class Processor implements Observer {
 	 * @return true if this is the first marker false otherwise
 	 */
 	public boolean isFirstMarker() {
-		// TODO: Implemetent this method
-		// [ Hint : Use the channelMarkerCount]
 		if (channelMarkerCount.size() == 0) {
 			return true;
 		}
@@ -136,42 +137,52 @@ public class Processor implements Observer {
 	 * Gets called when a Processor receives a message in its buffer Processes the
 	 * message received in the buffer
 	 */
+	@SuppressWarnings("static-access")
 	public void update(Observable observable, Object arg) {
 		Message message = (Message) arg;
-		Processor sender = message.getFrom();
 		Processor current = this;
 
 		if (message.getMessageType().equals(MessageType.MARKER)) {
 
 			Buffer fromChannel = (Buffer) observable;
 			RecordApplicationMessages recordMsg = null;
-			// We need fromChannel to stop recording from (say) 2 and 3 on channel 12 and
-			// 13.
-			// i.e incoming channel of 2 should remove P12 and incoing channel of 3 should
-			// remove P13
 
-			// TODO: homework Record from Channel as Empty
-			// TODO: add logic here so that if the marker comes back to the initiator then
-			// it should stop recording
 			if (isFirstMarker()) {
+				System.out.println();
+				System.out.println("INSIDE PROCESSOR P" + current.id);
 				this.recordMyCurrentState();
-
-//				channelMarkerCount.put(this, channelMarkerCount.get(this) + 1);
 				channelMarkerCount.put(this, 1);
 				System.out.println();
 
 				recordChannelAsEmpty(fromChannel);
 				System.out.println("Recorded channel " + fromChannel.getLabel() + " as empty");
-				// 2 channels for senders inChannel. Use forloop here to recordChannel, i.e
-				// record message on that channel
 
 				for (int idx = 0; idx < current.inChannels.size(); idx++) {
+					if (channelState.containsKey(inChannels.get(idx))) {
+						if (!channelState.get(inChannels.get(idx)).isEmpty()) {
+							recordMsg = new RecordApplicationMessages(inChannels.get(idx), this);
+							recordMsg.setName(inChannels.get(idx).getLabel());
+							recordMsg.start();
+							if (recordMsg != null) {
+								System.out.println("Created Thread for channel " + inChannels.get(idx).getLabel());
+								threadHolder.put(inChannels.get(idx).getLabel(), recordMsg);
+							}
+						}
+					} else {
+						channelState.put(inChannels.get(idx), new ArrayList<Message>());
+						recordMsg = new RecordApplicationMessages(inChannels.get(idx), this);
+						recordMsg.setName(inChannels.get(idx).getLabel());
+						recordMsg.start();
+						if (recordMsg != null) {
+							System.out.println("Created Thread for channel " + inChannels.get(idx).getLabel());
+							threadHolder.put(inChannels.get(idx).getLabel(), recordMsg);
+						}
+					}
+				}
+				for (int idx = 0; idx < current.outChannels.size(); idx++) {
 					System.out.println("Sending Marker from P" + this.id + " to " + outChannels.get(idx).getLabel());
+					System.out.println();
 
-					recordMsg = new RecordApplicationMessages(inChannels.get(idx), this);
-					recordMsg.setName(inChannels.get(idx).getLabel());
-					recordMsg.start();
-					
 					try {
 						Thread.currentThread().sleep(2000);
 					} catch (Exception e) {
@@ -184,18 +195,17 @@ public class Processor implements Observer {
 
 			} else {
 				try {
-					System.out.println(
-							"Duplicate MARKER. Stop recording on all incoming channels of Processor P" + this.id);
+					System.out.println("Duplicate MARKER on Processor" + current.id
+							+ ". Stop recording on this incoming channel of Processor P" + this.id);
+					if (threadHolder.get(fromChannel.getLabel()) != null) {
+						threadHolder.get(fromChannel.getLabel()).interrupt();
+					}
 
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 
-		} else {
-			if (message.getMessageType().equals(MessageType.ALGORITHM)) {
-					System.out.println("Processing Algorithm message on processor"+this.id);
-			} 
 		}
 
 	}
@@ -211,6 +221,10 @@ public class Processor implements Observer {
 			recordMsg = new RecordApplicationMessages(inChannels.get(idx), this);
 			recordMsg.setName(inChannels.get(idx).getLabel());
 			recordMsg.start();
+			if (recordMsg != null) {
+				System.out.println("Created Thread for channel " + inChannels.get(idx).getLabel());
+				threadHolder.put(inChannels.get(idx).getLabel(), recordMsg);
+			}
 		}
 
 		for (int idx = 0; idx < this.outChannels.size(); idx++) {
@@ -218,9 +232,9 @@ public class Processor implements Observer {
 			try {
 				Thread.sleep(10000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
 			this.sendMessgeTo(marker, outChannels.get(idx));
 		}
 	}

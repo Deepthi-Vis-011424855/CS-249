@@ -1,8 +1,8 @@
 package HW6_ChandyLamport;
 
 /**
- * This is the simulation of a main algorithm that will run on processors P1,
- * P2, P3 This could be a banking application, payroll application or any other
+ * This is the simulation of a main BONJOUR that will run on processors P1, P2,
+ * P3 This could be a banking application, payroll application or any other
  * distributed application
  */
 public class Algorithm extends Thread {
@@ -26,26 +26,42 @@ public class Algorithm extends Thread {
 		try {
 			compute(processor1);
 			Thread.sleep(2000);
-			processor1.sendMessgeTo(new Message(MessageType.ALGORITHM), processor1.outChannels.get(0)); // C13
+			processor1.sendMessgeTo(new Message(MessageType.HELLO), processor1.outChannels.get(0)); // C13
 			Thread.sleep(2000);
 			compute(processor1);
 			Thread.sleep(2000);
-			processor1.sendMessgeTo(new Message(MessageType.ALGORITHM), processor1.outChannels.get(1)); // C12
+			processor1.sendMessgeTo(new Message(MessageType.HELLO), processor1.outChannels.get(1)); // C12
 			Thread.sleep(2000);
 			compute(processor1);
 			Thread.sleep(2000);
-			processor1.sendMessgeTo(new Message(MessageType.ALGORITHM), processor1.outChannels.get(0)); // C13
+			processor1.sendMessgeTo(new Message(MessageType.HELLO), processor1.outChannels.get(0)); // C13
 			Thread.sleep(2000);
 			compute(processor1);
 			Thread.sleep(2000);
-			processor1.sendMessgeTo(new Message(MessageType.ALGORITHM), processor1.outChannels.get(1)); // C12
+			processor1.sendMessgeTo(new Message(MessageType.BONJOUR), processor1.outChannels.get(1)); // C12
+			Thread.sleep(2000);
+			compute(processor1);
+			Thread.sleep(2000);
+			processor1.sendMessgeTo(new Message(MessageType.BONJOUR), processor1.outChannels.get(0)); // C13
+			Thread.sleep(2000);
+			compute(processor1);
+			Thread.sleep(2000);
+			processor1.sendMessgeTo(new Message(MessageType.CIAO), processor1.outChannels.get(1)); // C12
+			Thread.sleep(2000);
+			compute(processor1);
+			Thread.sleep(2000);
+			processor1.sendMessgeTo(new Message(MessageType.BONJOUR), processor1.outChannels.get(0)); // C13
+			Thread.sleep(2000);
+			compute(processor1);
+			Thread.sleep(2000);
+			processor1.sendMessgeTo(new Message(MessageType.HELLO), processor1.outChannels.get(1)); // C12
 			Thread.sleep(2000);
 			compute(processor1);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
+
 		/**
 		 * TODO: Homework: Implement send message from processor1 to different
 		 * processors. Add a time gap betweeen two different send events. Add
@@ -61,19 +77,35 @@ public class Algorithm extends Thread {
 		try {
 			compute(processor2);
 			Thread.sleep(1500);
-			processor2.sendMessgeTo(new Message(MessageType.ALGORITHM), processor2.outChannels.get(0)); // C21
+			processor2.sendMessgeTo(new Message(MessageType.BONJOUR), processor2.outChannels.get(0)); // C21
 			Thread.sleep(1500);
 			compute(processor2);
 			Thread.sleep(1500);
-			processor2.sendMessgeTo(new Message(MessageType.ALGORITHM), processor2.outChannels.get(1)); // C23
+			processor2.sendMessgeTo(new Message(MessageType.BONJOUR), processor2.outChannels.get(1)); // C23
 			Thread.sleep(1500);
 			compute(processor2);
 			Thread.sleep(1500);
-			processor2.sendMessgeTo(new Message(MessageType.ALGORITHM), processor2.outChannels.get(0)); // C21
+			processor2.sendMessgeTo(new Message(MessageType.HELLO), processor2.outChannels.get(0)); // C21
 			Thread.sleep(1500);
 			compute(processor2);
 			Thread.sleep(1500);
-			processor2.sendMessgeTo(new Message(MessageType.ALGORITHM), processor2.outChannels.get(1)); // C23
+			processor2.sendMessgeTo(new Message(MessageType.HELLO), processor2.outChannels.get(1)); // C23
+			Thread.sleep(1500);
+			compute(processor2);
+			Thread.sleep(1500);
+			processor2.sendMessgeTo(new Message(MessageType.CIAO), processor2.outChannels.get(0)); // C21
+			Thread.sleep(1500);
+			compute(processor2);
+			Thread.sleep(1500);
+			processor2.sendMessgeTo(new Message(MessageType.CIAO), processor2.outChannels.get(1)); // C23
+			Thread.sleep(1500);
+			compute(processor2);
+			Thread.sleep(1500);
+			processor2.sendMessgeTo(new Message(MessageType.BONJOUR), processor2.outChannels.get(0)); // C21
+			Thread.sleep(1500);
+			compute(processor2);
+			Thread.sleep(1500);
+			processor2.sendMessgeTo(new Message(MessageType.CIAO), processor2.outChannels.get(1)); // C23
 			Thread.sleep(1500);
 			compute(processor2);
 
@@ -88,19 +120,35 @@ public class Algorithm extends Thread {
 		try {
 			compute(processor3);
 			Thread.sleep(1000);
-			processor3.sendMessgeTo(new Message(MessageType.ALGORITHM), processor3.outChannels.get(0)); // C31
+			processor3.sendMessgeTo(new Message(MessageType.BONJOUR), processor3.outChannels.get(0)); // C31
 			Thread.sleep(1000);
 			compute(processor3);
 			Thread.sleep(1000);
-			processor3.sendMessgeTo(new Message(MessageType.ALGORITHM), processor3.outChannels.get(1)); // C32
+			processor3.sendMessgeTo(new Message(MessageType.BONJOUR), processor3.outChannels.get(1)); // C32
 			Thread.sleep(1000);
 			compute(processor3);
 			Thread.sleep(1000);
-			processor3.sendMessgeTo(new Message(MessageType.ALGORITHM), processor3.outChannels.get(0)); // C31
+			processor3.sendMessgeTo(new Message(MessageType.BONJOUR), processor3.outChannels.get(0)); // C31
 			Thread.sleep(1000);
 			compute(processor3);
 			Thread.sleep(1000);
-			processor3.sendMessgeTo(new Message(MessageType.ALGORITHM), processor3.outChannels.get(1)); // C32
+			processor3.sendMessgeTo(new Message(MessageType.BONJOUR), processor3.outChannels.get(1)); // C32
+			Thread.sleep(1000);
+			compute(processor3);
+			Thread.sleep(1000);
+			processor3.sendMessgeTo(new Message(MessageType.BONJOUR), processor3.outChannels.get(0)); // C31
+			Thread.sleep(1000);
+			compute(processor3);
+			Thread.sleep(1000);
+			processor3.sendMessgeTo(new Message(MessageType.BONJOUR), processor3.outChannels.get(1)); // C32
+			Thread.sleep(1000);
+			compute(processor3);
+			Thread.sleep(1000);
+			processor3.sendMessgeTo(new Message(MessageType.BONJOUR), processor3.outChannels.get(0)); // C31
+			Thread.sleep(1000);
+			compute(processor3);
+			Thread.sleep(1000);
+			processor3.sendMessgeTo(new Message(MessageType.BONJOUR), processor3.outChannels.get(1)); // C32
 			Thread.sleep(1000);
 			compute(processor3);
 
@@ -116,7 +164,8 @@ public class Algorithm extends Thread {
 	 * @param p
 	 */
 	public void compute(Processor p) {
-		
+		// System.out.println("Doing some computation on " +
+		// p.getClass().getSimpleName());
 	}
 
 	@Override

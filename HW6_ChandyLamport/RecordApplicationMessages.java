@@ -1,9 +1,7 @@
 package HW6_ChandyLamport;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class RecordApplicationMessages extends Thread {
 	Buffer channel;
@@ -19,25 +17,29 @@ public class RecordApplicationMessages extends Thread {
 	@Override
 	public void run() {
 		int lastIdx = channel.getTotalMessageCount() - 1;
-		
-		while (true) {
-			if (lastIdx > 0) {
-				int count = channel.getTotalMessageCount() - 1;
-				Message message = channel.getMessage(count);
+		int current = lastIdx;
+		int count;
 
-				if (MessageType.MARKER.equals(message.getMessageType())) {
-					System.out.println("*********Duplicate marker received on channel "+channel.getLabel()+"************");
-					System.out.println("Interrupting thread "+Thread.currentThread().getName());
-					Thread.currentThread().interrupt();
-					break;
-				} 
-			} else {
-				try {
-					Thread.currentThread().sleep(1000);
-				} catch (Exception e) {
-					e.printStackTrace();
+		try {
+			while (!this.isInterrupted()) {
+				count = channel.getTotalMessageCount() - 1;
+				if (current < count) {
+
+					Message message = channel.getMessage(current);
+					recordedMessagesSinceMarker.add(message);
+					current++;
 				}
 			}
+			System.out.println("Channel " + channel.getLabel() + " interrupted");
+			System.out.println("The messages recorded in the channel are:");
+			for (int i = 0; i < recordedMessagesSinceMarker.size(); i++) {
+				System.out.println(recordedMessagesSinceMarker.get(i));
+			}
+			System.out.println();
+		} catch (Exception e) {
+			System.out.println("ERROR: Channel " + channel.getLabel() + " interrupted");
 		}
+
 	}
+
 }

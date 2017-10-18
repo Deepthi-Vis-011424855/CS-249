@@ -1,22 +1,17 @@
+Starting Thread 1
+Starting Thread 3
+Starting Thread 2
 Initiating snapshot from P1
 
-Starting Thread 3
-Starting Thread 1
-Starting Thread 2
 P1: Recording my registers... 
 P1: Recording my program counters...
 P1: Recording my local variables...
 
+Created Thread for channel P31
+Created Thread for channel P21
 Sending Marker from P1 to P13
-Processing Algorithm message on processor1
-Processing Algorithm message on processor1
-Processing Algorithm message on processor3
-Processing Algorithm message on processor2
-Processing Algorithm message on processor3
-Processing Algorithm message on processor1
-Processing Algorithm message on processor2
-Processing Algorithm message on processor2
-Processing Algorithm message on processor1
+
+INSIDE PROCESSOR P3
 
 P3: Recording my registers... 
 P3: Recording my program counters...
@@ -24,13 +19,21 @@ P3: Recording my local variables...
 
 
 Recorded channel P13 as empty
+Created Thread for channel P23
 Sending Marker from P3 to P31
-*********Duplicate marker received on channel P13************
-Interrupting thread P13
-Processing Algorithm message on processor3
-Processing Algorithm message on processor3
-Duplicate MARKER. Stop recording on all incoming channels of Processor P1
+
+Duplicate MARKER on Processor1. Stop recording on this incoming channel of Processor P1
 Sending Marker from P3 to P32
+
+Channel P31 interrupted
+The messages recorded in the channel are:
+Message Type: BONJOUR
+Message Type: BONJOUR
+Message Type: BONJOUR
+Message Type: BONJOUR
+
+
+INSIDE PROCESSOR P2
 
 P2: Recording my registers... 
 P2: Recording my program counters...
@@ -38,14 +41,33 @@ P2: Recording my local variables...
 
 
 Recorded channel P32 as empty
+Created Thread for channel P12
 Sending Marker from P2 to P21
-Processing Algorithm message on processor2
-Duplicate MARKER. Stop recording on all incoming channels of Processor P1
+
+Duplicate MARKER on Processor1. Stop recording on this incoming channel of Processor P1
 Sending Marker from P2 to P23
-*********Duplicate marker received on channel P32************
-Interrupting thread P32
-Duplicate MARKER. Stop recording on all incoming channels of Processor P3
+
+Channel P21 interrupted
+The messages recorded in the channel are:
+Message Type: BONJOUR
+Message Type: HELLO
+Message Type: CIAO
+Message Type: BONJOUR
+
+Duplicate MARKER on Processor3. Stop recording on this incoming channel of Processor P3
 
 
 Sending Marker from P1 to P12
-Duplicate MARKER. Stop recording on all incoming channels of Processor P2
+Channel P23 interrupted
+The messages recorded in the channel are:
+Message Type: HELLO
+Message Type: CIAO
+Message Type: CIAO
+
+Duplicate MARKER on Processor2. Stop recording on this incoming channel of Processor P2
+Channel P12 interrupted
+The messages recorded in the channel are:
+Message Type: BONJOUR
+Message Type: CIAO
+Message Type: HELLO
+
