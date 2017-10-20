@@ -1,0 +1,27 @@
+----------------------------------------------------------------------------------------------
+LEADER ELECTION
+______________________________________________________________________________________________
+
+Leader election algorithm is the one in which each processor in a ring sends messages on its left and waits to receive messages from a processor on its right. The processor with the highest ID gets selected as a leader and the algorithm terminates when the processor with the highest ID received its own ID.
+
+HOW TO RUN:
+
+Using any IDE such as Eclipse, this program can be executed by downloading both the .java files and executing the Main.java file as a Java application.
+
+To run in the terminal, download and export the .java files as a .jar and execute by running "java ___.jar".
+
+PROGRAM FLOW:
+
+Main.java:
+
+- The ring structure is defined using an init() method.
+- 5 threads are spawned (one for each processor), which calls the send and receive methods of the Processor class in Processor.java.
+- There are methods defined to print the ring structure: displayRing() and to print the leader: printLeader().
+
+Processor.java:
+
+- Each processor comprises of an id, left processor, right processor, a LinkedBlockingQueue and an isLeader flag.
+- In the send method, a message is put into the left processor's queue.
+- In the receive method, depending on the value of the message, the execution is done.
+
+
