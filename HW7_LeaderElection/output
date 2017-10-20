@@ -1,0 +1,60 @@
+The initial ring structure is:
+Processor4 <---------- Processor1 ---------> Processor3
+Processor5 <---------- Processor2 ---------> Processor4
+Processor1 <---------- Processor3 ---------> Processor5
+Processor2 <---------- Processor4 ---------> Processor1
+Processor3 <---------- Processor5 ---------> Processor2
+
+Sending message <<1>> from Processor1 to Processor4
+
+^^^^^^ Swallowing the message <<1>> at Processor4 which is received from Processor1^^^^^^
+Sending message <<2>> from Processor2 to Processor5
+
+^^^^^^ Swallowing the message <<2>> at Processor5 which is received from Processor2^^^^^^
+Sending message <<3>> from Processor3 to Processor1
+The message received is <<3>> at Processor1 from Processor3
+
+******The message <<3>> is greater than the ID of the current processor's ID:1******
+Forwarding the message <<3>> from current processor Processor1 to the processor at left Processor4
+--------------------------------------------------------------
+Sending message <<3>> from Processor1 to Processor4
+
+^^^^^^ Swallowing the message <<3>> at Processor4 which is received from Processor1^^^^^^
+Sending message <<4>> from Processor4 to Processor2
+The message received is <<4>> at Processor2 from Processor4
+
+******The message <<4>> is greater than the ID of the current processor's ID:2******
+Forwarding the message <<4>> from current processor Processor2 to the processor at left Processor5
+--------------------------------------------------------------
+Sending message <<4>> from Processor2 to Processor5
+
+^^^^^^ Swallowing the message <<4>> at Processor5 which is received from Processor2^^^^^^
+Sending message <<5>> from Processor5 to Processor3
+The message received is <<5>> at Processor3 from Processor5
+
+******The message <<5>> is greater than the ID of the current processor's ID:3******
+Forwarding the message <<5>> from current processor Processor3 to the processor at left Processor1
+--------------------------------------------------------------
+Sending message <<5>> from Processor3 to Processor1
+The message received is <<5>> at Processor1 from Processor3
+
+******The message <<5>> is greater than the ID of the current processor's ID:1******
+Forwarding the message <<5>> from current processor Processor1 to the processor at left Processor4
+--------------------------------------------------------------
+Sending message <<5>> from Processor1 to Processor4
+The message received is <<5>> at Processor4 from Processor1
+
+******The message <<5>> is greater than the ID of the current processor's ID:4******
+Forwarding the message <<5>> from current processor Processor4 to the processor at left Processor2
+--------------------------------------------------------------
+Sending message <<5>> from Processor4 to Processor2
+The message received is <<5>> at Processor2 from Processor4
+
+******The message <<5>> is greater than the ID of the current processor's ID:2******
+Forwarding the message <<5>> from current processor Processor2 to the processor at left Processor5
+--------------------------------------------------------------
+Sending message <<5>> from Processor2 to Processor5
+Current processor:5 Message received: 5
+!!!!!! Received own ID - Terminating as leader !!!!!!
+
+The leader process is Processor5
