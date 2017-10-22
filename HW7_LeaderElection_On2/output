@@ -15,28 +15,22 @@ Sending message <<3>> from Processor1 to Processor4
 Sending message <<4>> from Processor4 to Processor2
 Processor 2 received message from 4
 
-Processor 4 received message from 1
-
 Processor 2 forwarding message <<4>> from 4
 Sending message <<4>> from Processor2 to Processor5
-Processor 4 swallowed the Processor 1
+Processor 4 received message from 1
+
+Processor 4 swallowed the message <<1>> from Processor1
 Processor 4 received message from 3
 
-Processor 4 swallowed the Processor 3
+Processor 4 swallowed the message <<3>> from Processor3
 Sending message <<5>> from Processor5 to Processor3
 Processor 3 received message from 5
 
 Processor 3 forwarding message <<5>> from 5
-Processor 5 received message from 2
-
 Sending message <<5>> from Processor3 to Processor1
-Processor 5 swallowed the Processor 2
 Processor 1 received message from 5
 
 Processor 1 forwarding message <<5>> from 5
-Processor 5 received message from 4
-
-Processor 5 swallowed the Processor 4
 Sending message <<5>> from Processor1 to Processor4
 Processor 4 received message from 5
 
@@ -46,10 +40,16 @@ Processor 2 received message from 5
 
 Processor 2 forwarding message <<5>> from 5
 Sending message <<5>> from Processor2 to Processor5
+Processor 5 received message from 2
+
+Processor 5 swallowed the message <<2>> from Processor2
+Processor 5 received message from 4
+
+Processor 5 swallowed the message <<4>> from Processor4
 Processor 5 received message from 5
 
 RECEIVED MY OWN ID AGAIN
-The leader is : Processor 5
+***Sending <<-1>> as termination message***
 Sending message <<-1>> from Processor5 to Processor3
 Processor 3 received message from -1
 
@@ -67,9 +67,6 @@ Processor 2 received message from -1
 
 Processor P2 TERMINATED as a non-leader.
 Sending message <<-1>> from Processor2 to Processor5
-Processor 5 received message from -1
-
-Processor 5 swallowed the Processor -1
 
 --------------------------------------------------------------
 Processor P5 is the LEADER.
