@@ -29,11 +29,12 @@ public class Processor {
 		if (!this.queue.isEmpty()) {
 			otherProcessorId = (int) this.queue.poll();
 			if (!this.isLeader) {
-				System.out.println("Processor " + this.id + " received message from " + otherProcessorId);
+				System.out.println("Processor " + this.id + " received message <<" +otherProcessorId+ ">>");
 			}
 			if (otherProcessorId == -1 && !(this.isLeader)) {
 				System.out.println();
 				System.out.println("Processor P" + this.id + " TERMINATED as a non-leader.");
+				System.out.println();
 				send(-1);
 			} else if (otherProcessorId < this.id) {
 				if (!this.isLeader) {
