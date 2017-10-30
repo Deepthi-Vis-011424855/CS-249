@@ -14,7 +14,7 @@ Leader election algorithm with complexity O(nlogn):
 
 HOW TO RUN:
 
-Using any IDE such as Eclipse, this program can be executed by downloading both the .java files and executing the Main.java file as a Java application.
+Using any IDE such as Eclipse, this program can be executed by downloading all the .java files and executing the Main.java file as a Java application.
 
 To run in the terminal, download and export the .java files as a .jar and execute by running "java ___.jar".
 
