@@ -1,0 +1,35 @@
+______________________________________________________________________________________________
+LEADER ELECTION in O(nlogn)
+______________________________________________________________________________________________
+
+Leader election algorithm with complexity O(nlogn):
+
+- There are 2 types of messages: PROBE and REPLY.
+- Initially, each processor sends a message (PROBE,id,phase=0,hop=1) to both its left and right processors.
+- The processor, on receiving a PROBE message from either left or right, compares the id in the PROBE message and its own ID and does the following:
+	o if ID in PROBE msg < own id, swallows the message
+	o if ID in PROBE msg > own id and hop < Math.pow(2,k), the processor forwards the PROBE message to left or right.
+	o if ID in PROBE msg > own id and hop >= Math.pow(2,k), the processor sends a REPLY message to left or right.
+	o The algorithm terminates when a processor received its own PROBE back.
+
+HOW TO RUN:
+
+Using any IDE such as Eclipse, this program can be executed by downloading both the .java files and executing the Main.java file as a Java application.
+
+To run in the terminal, download and export the .java files as a .jar and execute by running "java ___.jar".
+
+PROGRAM FLOW:
+
+Main.java:
+
+- The ring structure is defined using an init() method.
+- 5 threads are spawned (one for each processor), which calls the send and receive methods of the Processor class in Processor.java.
+- There is a method defined to print the ring structure: displayRing().
+
+Processor.java:
+
+- Each processor comprises of an id, left processor, right processor, a LinkedBlockingQueue,an isLeader flag, an isAsleep flag and hasReceivedReply flag.
+- There are overloaded send methods defined:
+	o send(message) puts the message in the left and right linkedblockingqueue of the invoking processor
+	o send(message, processor to) puts the message in the 'to' processor's queue.
+- In the receive method, depending on the message and the algorithm, the execution happens.

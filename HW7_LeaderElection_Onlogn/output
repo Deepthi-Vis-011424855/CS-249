@@ -1,0 +1,110 @@
+The initial ring structure is:
+Processor5 <---------- Processor50 ---------> Processor30
+Processor1 <---------- Processor10 ---------> Processor5
+Processor50 <---------- Processor30 ---------> Processor1
+Processor10 <---------- Processor5 ---------> Processor50
+Processor30 <---------- Processor1 ---------> Processor10
+
+
+
+Sending PROBE message from Processor30 to left Processor50 and right processor1
+=========================== PHASE 0 ===========================
+Sending PROBE message from Processor10 to left Processor1 and right processor5
+
+Sending PROBE message from Processor50 to left Processor5 and right processor30
+
+Sending PROBE message from Processor5 to left Processor10 and right processor50
+
+Sending PROBE message from Processor1 to left Processor30 and right processor10
+
+##### Sending REPLY to PROBE from Processor30 to left Processor50 #####
+
+
+***** The message 30 is swallowed at Processor50 *****
+***** The message 1 is swallowed at Processor30 *****
+
+##### Sending REPLY to PROBE from Processor1 to left Processor30 #####
+
+***** The message 5 is swallowed at Processor50 *****
+
+***** The message 5 is swallowed at Processor10 *****
+
+##### Sending REPLY to PROBE from Processor5 to left Processor10 #####
+
+##### Sending REPLY to PROBE from Processor1 to right Processor10 #####
+
+***** The message 1 is swallowed at Processor10 *****
+
+##### Sending REPLY to PROBE from Processor5 to right Processor50 #####
+
+^^^^^ The phase0 winner is Processor50 ^^^^^
+
+=========================== PHASE 1 ===========================
+
+Sending PROBE message from Processor50 to left Processor5 and right processor30
+
+!!!!! Forwarding PROBE from Processor30 to right Processor1 !!!!!
+
+##### Sending REPLY to PROBE from Processor1 to left Processor30 #####
+
+!!!!! Forwarding PROBE from Processor5 to left Processor10 !!!!!
+
+^^^^^ The phase0 winner is Processor10 ^^^^^
+
+=========================== PHASE 1 ===========================
+
+Sending PROBE message from Processor10 to left Processor1 and right processor5
+
+!!!!! Forwarding PROBE from Processor1 to left Processor30 !!!!!
+
+***** The message 10 is swallowed at Processor30 *****
+
+
+!!!!! Forwarding PROBE from Processor5 to right Processor50 !!!!!
+##### Sending REPLY to PROBE from Processor10 to right Processor5 #####
+
+***** The message 10 is swallowed at Processor50 *****
+
+^^^^^ The phase1 winner is Processor50 ^^^^^
+
+=========================== PHASE 2 ===========================
+
+Sending PROBE message from Processor50 to left Processor5 and right processor30
+
+!!!!! Forwarding PROBE from Processor30 to right Processor1 !!!!!
+
+!!!!! Forwarding PROBE from Processor1 to right Processor10 !!!!!
+
+!!!!! Forwarding PROBE from Processor10 to right Processor5 !!!!!
+
+!!!!! Forwarding PROBE from Processor5 to left Processor10 !!!!!
+
+!!!!! Forwarding PROBE from Processor10 to left Processor1 !!!!!
+
+!!!!! Forwarding PROBE from Processor1 to left Processor30 !!!!!
+
+##### Sending REPLY to PROBE from Processor30 to right Processor1 #####
+
+##### Sending REPLY to PROBE from Processor5 to left Processor10 #####
+
+^^^^^ The phase2 winner is Processor50 ^^^^^
+
+=========================== PHASE 3 ===========================
+
+Sending PROBE message from Processor50 to left Processor5 and right processor30
+
+!!!!! Forwarding PROBE from Processor30 to right Processor1 !!!!!
+
+!!!!! Forwarding PROBE from Processor1 to right Processor10 !!!!!
+
+!!!!! Forwarding PROBE from Processor5 to left Processor10 !!!!!
+
+!!!!! Forwarding PROBE from Processor10 to right Processor5 !!!!!
+
+!!!!! Forwarding PROBE from Processor5 to right Processor50 !!!!!
+
+!!!!! Forwarding PROBE from Processor10 to left Processor1 !!!!!
+
+------ The leader is Processor50 ------
+
+EXECUTION COMPLETE!!!!
