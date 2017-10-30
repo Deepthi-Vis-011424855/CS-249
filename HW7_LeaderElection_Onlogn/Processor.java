@@ -21,7 +21,11 @@ public class Processor {
 		isAsleep = true;
 		hasReceivedReply = false;
 	}
-
+	
+	/**
+	 * Method to send messages to both left and right processors
+	 * @param message = the message to be sent
+	 */
 	public void send(Message message) {
 		if (!this.isAsleep) {
 			System.out.println("=========================== PHASE " + message.phase + " ===========================");
@@ -33,11 +37,19 @@ public class Processor {
 		this.right.queue.add(message);
 		this.isAsleep = false;
 	}
-
+	
+	/**
+	 * The overloaded send method to send message to only that processor specified
+	 * @param message = message to be sent
+	 * @param to = the processor to which the message is to be sent
+	 */
 	public void send(Message message, Processor to) {
 		to.queue.add(message);
 	}
-
+	
+	/**
+	 * This method is where the algorithm is defined.
+	 */
 	public void recieve() {
 		Message topMsg;
 		if (!this.queue.isEmpty()) {
@@ -123,8 +135,10 @@ public class Processor {
 						msg.setSender(this);
 						this.send(msg, this.right);
 					} else if (!this.hasReceivedReply) {
+						// Setting the hasReceivedReply flag true for the first time a REPLY message is received by a processor with its own ID.
 						this.hasReceivedReply = true;
 					} else {
+						// The execution goes here the second time a processor received the REPLY message with its own ID
 						System.out.println();
 						System.out.println(
 								"^^^^^ The phase" + topMsg.phase + " winner is Processor" + this.id + " ^^^^^");
@@ -142,8 +156,10 @@ public class Processor {
 						msg.setSender(this);
 						this.send(msg, this.left);
 					} else if (!this.hasReceivedReply) {
-						hasReceivedReply = true;
+						// Setting the hasReceivedReply flag true for the first time a REPLY message is received by a processor with its own ID.
+						this.hasReceivedReply = true;
 					} else {
+						// The execution goes here the second time a processor received the REPLY message with its own ID
 						System.out.println();
 						System.out.println(
 								"^^^^^ The phase" + topMsg.phase + " winner is Processor" + this.id + " ^^^^^");
