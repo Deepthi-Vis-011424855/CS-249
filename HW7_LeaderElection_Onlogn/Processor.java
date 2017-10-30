@@ -24,7 +24,7 @@ public class Processor {
 
 	public void send(Message message) {
 		if (!this.isAsleep) {
-			System.out.println("=========================== PHASE " + message.phase+ " ===========================");
+			System.out.println("=========================== PHASE " + message.phase + " ===========================");
 		}
 		System.out.println();
 		System.out.println("Sending " + message.messageType.name() + " message from Processor" + this.id
@@ -68,8 +68,9 @@ public class Processor {
 						Message msg = new Message(MessageType.REPLY, topMsg.id, topMsg.phase);
 						msg.setSender(this);
 						System.out.println();
-						System.out.println("##### Sending " + MessageType.REPLY.name() + " to " +topMsg.messageType.name()+ " from Processor" + this.id
-								+ " to left Processor" + this.left.id + " #####");
+						System.out.println(
+								"##### Sending " + MessageType.REPLY.name() + " to " + topMsg.messageType.name()
+										+ " from Processor" + this.id + " to left Processor" + this.left.id + " #####");
 						this.send(msg, this.left);
 					}
 					if (topMsg.id < this.id) {
@@ -102,8 +103,9 @@ public class Processor {
 						Message msg = new Message(MessageType.REPLY, topMsg.id, topMsg.phase);
 						msg.setSender(this);
 						System.out.println();
-						System.out.println("##### Sending " + MessageType.REPLY.name() + " to " +topMsg.messageType.name()+ " from Processor" + this.id
-								+ " to right Processor" + this.right.id + " #####");
+						System.out.println("##### Sending " + MessageType.REPLY.name() + " to "
+								+ topMsg.messageType.name() + " from Processor" + this.id + " to right Processor"
+								+ this.right.id + " #####");
 						this.send(msg, this.right);
 					}
 					if (topMsg.id < this.id) {
@@ -124,8 +126,8 @@ public class Processor {
 						this.hasReceivedReply = true;
 					} else {
 						System.out.println();
-						System.out
-								.println("^^^^^ The phase" + topMsg.phase + " winner is Processor" + this.id + " ^^^^^");
+						System.out.println(
+								"^^^^^ The phase" + topMsg.phase + " winner is Processor" + this.id + " ^^^^^");
 						System.out.println();
 						Message msg = new Message(MessageType.PROBE, this.id, topMsg.phase + 1, 1);
 						msg.setSender(this);
@@ -143,8 +145,8 @@ public class Processor {
 						hasReceivedReply = true;
 					} else {
 						System.out.println();
-						System.out
-								.println("^^^^^ The phase" + topMsg.phase + " winner is Processor" + this.id + " ^^^^^");
+						System.out.println(
+								"^^^^^ The phase" + topMsg.phase + " winner is Processor" + this.id + " ^^^^^");
 						System.out.println();
 						Message msg = new Message(MessageType.PROBE, this.id, topMsg.phase + 1, 1);
 						msg.setSender(this);
