@@ -33,3 +33,11 @@ Processor.java:
 	o send(message) puts the message in the left and right linkedblockingqueue of the invoking processor
 	o send(message, processor to) puts the message in the 'to' processor's queue.
 - In the receive method, depending on the message and the algorithm, the execution happens.
+
+MessageType.java:
+
+- This is a enumerator where the message types are defined.
+
+Message.java:
+
+- Here, the constructors for the message and getters and setters for the message are defined.
